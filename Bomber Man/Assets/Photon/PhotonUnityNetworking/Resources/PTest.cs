@@ -5,8 +5,15 @@ using Photon.Realtime;
 
 public class PTest : MonoBehaviourPunCallbacks
 {
-    void Start()
+    public bool ServerFlg; //サーバーフラグ
+    public void Login(string ip, bool sf)
     {
+        //サーバーフラグの設定
+        ServerFlg = sf;
+        //IPアドレスの設定
+        PhotonNetwork.PhotonServerSettings.AppSettings.Server = ip;
+        //ポート番号の設定
+        PhotonNetwork.PhotonServerSettings.AppSettings.Port = 5055;
         //ネットワークへの接続
         PhotonNetwork.ConnectUsingSettings();
     }
@@ -23,6 +30,36 @@ public class PTest : MonoBehaviourPunCallbacks
     {
         // ランダムな位置にネットワークオブジェクトを生成する
         var v = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
-        PhotonNetwork.Instantiate("Player", v, Quaternion.identity);
+        GameObject go = PhotonNetwork.Instantiate("Player", v, Quaternion.identity);
+        //サーバーなら赤、クライアントなら青にする
+        if (ServerFlg)
+        {
+            go.GetComponent<Renderer>().material.color = Color.red;
+        }
+        else
+        {
+            go.GetComponent<Renderer>().material.color = Color.blue;
+        }
+    }
+
+    //接続状態の表示
+    int status = 0;
+    private void Update()
+    {
+        if (PhotonNetwork.NetworkClientState.ToString() == "ConnectingToMasterserver" && status == 0)
+        {
+            status = 1;
+            Debug.Log("サーバーに接続中･･･");
+        }
+        if (PhotonNetwork.NetworkClientState.ToString() == "Authenticating" && status == 1)
+        {
+            status = 2;
+            Debug.Log("認証中･･･");
+        }
+        if (PhotonNetwork.NetworkClientState.ToString() == "Joining" && status == 2)
+        {
+            status = 3;
+            Debug.Log("ルームに参加中");
+        }
     }
 }
