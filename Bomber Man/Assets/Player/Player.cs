@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private Animator animator = null;
+
     private int SpeedX = 0;
     private int SpeedY = 0;
 
