@@ -506,6 +506,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Noctis
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8e83aafaa417f674da715464afc48ff2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2051397857934692247, guid: 8e83aafaa417f674da715464afc48ff2, type: 3}
       propertyPath: m_AABB.m_Center.x
       value: 0
@@ -618,6 +622,10 @@ PrefabInstance:
       propertyPath: m_AABB.m_Extent.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 8e83aafaa417f674da715464afc48ff2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f1db81ff65eae2e4f8b15a6bba4f5491, type: 2}
     - target: {fileID: 7331725616310153568, guid: 8e83aafaa417f674da715464afc48ff2, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -692,51 +700,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e83aafaa417f674da715464afc48ff2, type: 3}
---- !u!1 &1308738145
-GameObject:
+--- !u!1001 &1031039358
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1308738147}
-  - component: {fileID: 1308738148}
-  m_Layer: 0
-  m_Name: PlayerCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1308738147
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308738145}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
-  m_Children: []
-  m_Father: {fileID: 2123662039}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1308738148
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308738145}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.0001469
-  m_Direction: 1
-  m_Center: {x: -0.1, y: 0.9, z: 0}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 373170891393352506, guid: c5e00ed685a9a8b46b981fe3fd299fc5, type: 3}
+      propertyPath: m_Name
+      value: Noctis_Pre
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037539159401830784, guid: c5e00ed685a9a8b46b981fe3fd299fc5, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037539159401830784, guid: c5e00ed685a9a8b46b981fe3fd299fc5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037539159401830784, guid: c5e00ed685a9a8b46b981fe3fd299fc5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037539159401830784, guid: c5e00ed685a9a8b46b981fe3fd299fc5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037539159401830784, guid: c5e00ed685a9a8b46b981fe3fd299fc5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037539159401830784, guid: c5e00ed685a9a8b46b981fe3fd299fc5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037539159401830784, guid: c5e00ed685a9a8b46b981fe3fd299fc5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037539159401830784, guid: c5e00ed685a9a8b46b981fe3fd299fc5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037539159401830784, guid: c5e00ed685a9a8b46b981fe3fd299fc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037539159401830784, guid: c5e00ed685a9a8b46b981fe3fd299fc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037539159401830784, guid: c5e00ed685a9a8b46b981fe3fd299fc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c5e00ed685a9a8b46b981fe3fd299fc5, type: 3}
 --- !u!1 &1542454368
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,9 +810,9 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e83aafaa417f674da715464afc48ff2, type: 3}
   m_PrefabInstance: {fileID: 935670147}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2123662039 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e83aafaa417f674da715464afc48ff2, type: 3}
+--- !u!95 &2123662039 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 8e83aafaa417f674da715464afc48ff2, type: 3}
   m_PrefabInstance: {fileID: 935670147}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &2123662040
@@ -807,4 +827,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 521bbb68022fc1547b3707a0e62bb489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 2123662039}
+--- !u!54 &2123662043
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123662038}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 64
+  m_CollisionDetection: 0
+--- !u!136 &2123662044
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123662038}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.02088941
+  m_Height: 0.103754796
+  m_Direction: 1
+  m_Center: {x: -0.0039349706, y: 0.046435565, z: 0}
