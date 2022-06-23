@@ -4,20 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Animator animator = null;
-
-    private int SpeedX = 0;
-    private int SpeedY = 0;
-
-    private float angle = 0.0f;
-
-    static readonly int[,] ROTATION = new int[,]
-    {
-        {3,2,1},
-        {4,-1,0},
-        {5,6,7},
-    };
-
+    [SerializeField] Animator animator;
+    public float Speed = 3.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,54 +16,21 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float forward = 0;
-        float turn = 0.0f;
-
-        SpeedX = 0;
-        SpeedY = 0;
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey("up"))
         {
-            SpeedY++;
+            transform.position += transform.forward* Speed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey("down"))
         {
-            SpeedY--;
+            transform.position -= transform.forward * Speed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey("right"))
         {
-            SpeedX++;
+            transform.position += transform.right * Speed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey("left"))
         {
-            SpeedX--;
+            transform.position -= transform.right * Speed * Time.deltaTime;
         }
-
-        animator.SetFloat("Forward", forward, 0.1f, Time.deltaTime);
-        animator.SetFloat("Turn", turn, 0.1f, Time.deltaTime);
-        animator.SetBool("Crouch", false);
-        animator.SetBool("OnGround", true);
-    }
-
-    private void FixedUpdate()
-    {
-        //ˆÚ“®
-        float deltaX = 0.0f;
-        float deltaY = 0.0f;
-        if(SpeedX != 0)
-        {
-            deltaX += Time.deltaTime * SpeedX;
-        }
-        if (SpeedY!= 0)
-        {
-            deltaY += Time.deltaTime * SpeedY;
-        }
-        transform.localPosition += new Vector3(deltaX, 0.0f, deltaY);
-
-        int SpeedAngle = ROTATION[SpeedY + 1, SpeedX + 1];
-        if (SpeedAngle >= 0)
-        {
-            angle = SpeedAngle * 360.0f / 8.0f + 90.0f;
-        }
-        transform.localEulerAngles = new Vector3(0.0f, angle, 0.0f);
     }
 }
