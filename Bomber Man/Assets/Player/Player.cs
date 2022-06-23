@@ -28,6 +28,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float forward = 0;
+        float turn = 0.0f;
+
         SpeedX = 0;
         SpeedY = 0;
         if (Input.GetKey(KeyCode.UpArrow))
@@ -46,6 +49,11 @@ public class Player : MonoBehaviour
         {
             SpeedX--;
         }
+
+        animator.SetFloat("Forward", forward, 0.1f, Time.deltaTime);
+        animator.SetFloat("Turn", turn, 0.1f, Time.deltaTime);
+        animator.SetBool("Crouch", false);
+        animator.SetBool("OnGround", true);
     }
 
     private void FixedUpdate()
