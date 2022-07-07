@@ -26,6 +26,6 @@ public class CharacterSelect : MonoBehaviour
     public void OnClickStart()
     {
         PlayerPrefs.SetInt("CHARA_NUMBER", selectCharaNumber);
-        SceneManager.LoadScene("StageScene");
+        SceneManager.LoadScene("StageSelectScene");
     }
 }
