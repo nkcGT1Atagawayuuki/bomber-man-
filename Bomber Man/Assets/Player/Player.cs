@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         {
             forward = 1.0f;
         }
-        animator.SetFloat("WalkF", forward, 0.1f, Time.deltaTime);
+        animator.SetFloat("Walk", forward, 0.1f, Time.deltaTime);
     }
 
     private void FixedUpdate()
