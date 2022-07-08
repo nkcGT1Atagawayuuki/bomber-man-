@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BlockField : MonoBehaviour
 {
+
     enum Block
     {
         //ブロックの順番
@@ -16,6 +17,7 @@ public class BlockField : MonoBehaviour
     }
 
     [SerializeField] private GameObject[] Prefab = null;
+    public int stage = 0;
 
     //13×11フィールド
     const int FIELD_SIZE_X = 15;
