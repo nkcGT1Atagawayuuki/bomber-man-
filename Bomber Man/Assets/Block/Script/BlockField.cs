@@ -40,6 +40,23 @@ public class BlockField : MonoBehaviour
         { 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3, },
     };
 
+    static public Vector3 GetTruePositon(int x, int z)
+    {
+        float ofsX = -(FIELD_SIZE_X - 1) * 0.5f;
+        float ofsY = -(FIELD_SIZE_Y - 1) * 0.5f;
+        return new Vector3(x + ofsX, -0.0f, z + ofsY);
+    }
+
+    static public void GetBomberPositon(out int x, out int z, Vector3 truePosition)
+    {
+        float ofsX = -(FIELD_SIZE_X - 1) * 0.5f;
+        float ofsY = -(FIELD_SIZE_Y - 1) * 0.5f;
+         
+        x = (int)(truePosition.x - ofsX + 0.5f);
+        z = (int)(truePosition.z - ofsY + 0.5f);
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
