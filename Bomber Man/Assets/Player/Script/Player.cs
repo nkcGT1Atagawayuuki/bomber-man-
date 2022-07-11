@@ -55,6 +55,14 @@ public class Player : MonoBehaviour
             forward = 1.0f;
         }
         animator.SetFloat("Walk", forward, 0.1f, Time.deltaTime);
+
+        //ボタンを押したらボムを配置
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            int x, z;
+            BlockField.GetBomberPositon(out x, out z, transform.localPosition);
+            GameSystem.instance.SetBomb(x,z);
+        }
     }
 
     private void FixedUpdate()

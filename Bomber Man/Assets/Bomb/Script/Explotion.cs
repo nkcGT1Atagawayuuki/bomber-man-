@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour
+public class Explotion : MonoBehaviour
 {
     int _x = 0;
     int _z = 0;
-    int _power = 3; //”š•—‚ÌˆÐ—Í
 
-    float _timer = 2.5f;
+    float _timer = 0.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +21,7 @@ public class Bomb : MonoBehaviour
         
     }
 
-    public void Initialize(int x,int z)
+    public void Initialize(int x, int z)
     {
         _x = x;
         _z = z;
@@ -34,8 +33,6 @@ public class Bomb : MonoBehaviour
 
         if (_timer <= 0.0f)
         {
-            //”š”­
-            GameSystem.instance.Explode(_x, _z, _power);
             //Á‚¦‚é
             GameObject.Destroy(this.gameObject);
         }
