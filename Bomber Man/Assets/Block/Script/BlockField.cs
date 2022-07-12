@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class BlockField : MonoBehaviour
 {
+    static private BlockField _instance = null;
+    public static BlockField instance { get { return _instance; } }
 
-    enum Block
+
+    public enum Block
     {
         //ブロックの順番
         None,  //0
@@ -23,10 +26,10 @@ public class BlockField : MonoBehaviour
     const int FIELD_SIZE_X = 15;
     const int FIELD_SIZE_Y = 13;
 
-    static readonly int[,] FIELD = new int[,]
+    int[,] FIELD = new int[,]
     {
         { 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3, },
-        { 3,0,0,0,0,0,0,0,0,0,0,0,0,0,3, },
+        { 3,2,2,2,2,2,2,0,0,0,0,0,0,0,3, },
         { 3,0,3,0,3,0,3,0,3,0,3,0,3,0,3, },
         { 3,0,0,0,0,0,0,0,0,0,0,0,0,0,3, },
         { 3,0,3,0,3,0,3,0,3,0,3,0,3,0,3, },
@@ -36,9 +39,11 @@ public class BlockField : MonoBehaviour
         { 3,0,3,0,3,0,3,0,3,0,3,0,3,0,3, },
         { 3,0,0,0,0,0,0,0,0,0,0,0,0,0,3, },
         { 3,0,3,0,3,0,3,0,3,0,3,0,3,0,3, },
-        { 3,0,0,0,0,0,0,0,0,0,0,0,0,0,3, },
+        { 3,2,2,2,2,0,0,0,0,0,0,0,0,0,3, },
         { 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3, },
     };
+
+    GameObject[,] _valls = new GameObject[FIELD_SIZE_Y, FIELD_SIZE_X];
 
     static public Vector3 GetTruePositon(int x, int z)
     {
@@ -56,10 +61,17 @@ public class BlockField : MonoBehaviour
         z = (int)(truePosition.z - ofsY + 0.5f);
     }
 
+    public Block GetWall(int x,int z)
+    {
+        return (Block)FIELD[z, x];
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
+        _instance = this;
+
         //フィールドブロックを生成
         float ofsX = -(FIELD_SIZE_X - 1) * 0.5f;
         float ofsY = -(FIELD_SIZE_Y - 1) * 0.5f;
@@ -76,6 +88,11 @@ public class BlockField : MonoBehaviour
                 }
                 GameObject newObj = Instantiate<GameObject>(Prefab[FIELD[y, x]]);
                 newObj.transform.localPosition = new Vector3(x + ofsX, 0.5f, y + ofsY);
+
+                if (FIELD[y, x] == (int)Block.Break) 
+                {
+                    _valls[y, x] = newObj;
+                }
             }
         }
     }
@@ -84,5 +101,17 @@ public class BlockField : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public bool ReflectExplotion(int x, int z)
+    {
+        if(_valls[z,x] != null)
+        {
+            GameObject.Destroy(_valls[z, x].gameObject);
+            _valls[z, x] = null;
+            FIELD[z, x] = (int)Block.None;
+            return true;
+        }
+        return false;
     }
 }

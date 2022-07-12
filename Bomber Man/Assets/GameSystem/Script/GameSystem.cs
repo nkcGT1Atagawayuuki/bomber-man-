@@ -36,17 +36,60 @@ public class GameSystem : MonoBehaviour
         Debug.Log("”š”­");
 
         //”š•—‚Ì¶¬
-        for (int dz = 0; dz <= power; dz++) 
+        SpawnExplotion(x, z);
+        for (int dz = 1; dz <= power; dz++) 
         {
-            SpawnExplotion(x, z + dz);
-        } 
+            if(SpawnExplotion(x, z + dz) == false)
+            {
+                break;
+            }
+        }
+        for (int dz = 1; dz <= power; dz++)
+        {
+            if (SpawnExplotion(x, z - dz) == false)
+            {
+                break;
+            }
+        }
+        for (int dx = 1; dx <= power; dx++)
+        {
+            if(SpawnExplotion(x + dx, z) == false)
+            {
+                break;
+            }
+        }
+        for (int dx = 1; dx <= power; dx++)
+        {
+            if(SpawnExplotion(x - dx, z) == false)
+            {
+                break;
+            }
+        }
 
         return true;
     }
 
-    private void SpawnExplotion(int x, int z)
+    private bool SpawnExplotion(int x, int z)
     {
-        GameObject obj = Instantiate(_explosionPrefab);
-        obj.transform.localPosition = BlockField.GetTruePositon(x, z);
+        BlockField.Block block = BlockField.instance.GetWall(x, z);
+        if (block == BlockField.Block.Break || block == BlockField.Block.Wall)
+        {
+            if (block == BlockField.Block.Break)
+            {
+                GameObject obj = Instantiate(_explosionPrefab);
+                obj.transform.localPosition = BlockField.GetTruePositon(x, z);
+
+                BlockField.instance.ReflectExplotion(x, z);
+            }
+
+            return false;
+        }
+        
+        {
+            GameObject obj = Instantiate(_explosionPrefab);
+            obj.transform.localPosition = BlockField.GetTruePositon(x, z);
+        }
+       
+        return true;
     }
 }
