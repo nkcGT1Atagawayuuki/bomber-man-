@@ -30,16 +30,16 @@ public class PTest : MonoBehaviourPunCallbacks
     {
         // ランダムな位置にネットワークオブジェクトを生成する
         var v = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
-        GameObject go = PhotonNetwork.Instantiate("Player", v, Quaternion.identity);
+        PhotonNetwork.Instantiate("BomberMan", v, Quaternion.identity);
         //サーバーなら赤、クライアントなら青にする
-        if (ServerFlg)
-        {
-            go.GetComponent<Renderer>().material.color = Color.red;
-        }
-        else
-        {
-            go.GetComponent<Renderer>().material.color = Color.blue;
-        }
+        //if (ServerFlg)
+        //{
+        //    go.GetComponent<Renderer>().material.color = Color.red;
+        //}
+        //else
+        //{
+        //    go.GetComponent<Renderer>().material.color = Color.blue;
+        //}
     }
 
     //接続状態の表示

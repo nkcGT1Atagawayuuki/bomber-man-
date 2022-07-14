@@ -324,6 +324,8 @@ GameObject:
   - component: {fileID: 2906514118928182178}
   - component: {fileID: 2906514118928182177}
   - component: {fileID: 2906514118928182176}
+  - component: {fileID: 774602138415348104}
+  - component: {fileID: 2773236941232035229}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -415,6 +417,43 @@ MonoBehaviour:
   Capsule: {fileID: 2906514118928182177}
   rigidbody: {fileID: 2906514118928182178}
   bomb: {fileID: 2477989092868516104, guid: 2dcd3897cd4391242a1e021594dbe940, type: 3}
+--- !u!114 &774602138415348104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2906514118928182183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 2773236941232035229}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &2773236941232035229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2906514118928182183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
 --- !u!1 &2906514118955385285
 GameObject:
   m_ObjectHideFlags: 0
