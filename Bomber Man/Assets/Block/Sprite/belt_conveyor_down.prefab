@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4630891078004796864}
   - component: {fileID: 6658879957967652218}
   - component: {fileID: 4743355293773906709}
+  - component: {fileID: 1282645637}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -89,12 +90,28 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117994601275101575}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c267a1e9e803c864eadb6fc18cdac46f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1282645637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117994601275101575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40cd17557819374439dfdb4840ad3602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsOn: 0
+  TargetDriveSpeed: 2
+  DriveDirection: {x: 0, y: 0, z: -3}
+  _forcePower: 10
 --- !u!1 &3802092369874535625
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1080382183417271802}
   m_Layer: 0
-  m_Name: belt_conveyor
+  m_Name: belt_conveyor_down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
