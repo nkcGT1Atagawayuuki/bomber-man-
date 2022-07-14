@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 4957769633895241870}
   - component: {fileID: 3331050165946150285}
   - component: {fileID: 474379093525279281}
-  - component: {fileID: 5951412425590009931}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -114,19 +113,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5951412425590009931
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5013420951216281503}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6071535865982516307
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +122,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2847105331548082964}
-  - component: {fileID: 2477989092868516104}
+  - component: {fileID: 736116728299740135}
+  - component: {fileID: 3498502453564545902}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -159,7 +146,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2477989092868516104
+--- !u!114 &736116728299740135
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,6 +159,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _power: 1
+  sphere: {fileID: 3498502453564545902}
+--- !u!135 &3498502453564545902
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6071535865982516307}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &8737845009583153617
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +264,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 8737845009583153617}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1

@@ -10,11 +10,12 @@ public class Bomb : MonoBehaviour
 
     float _timer = 2.5f;
     Player player;
+    public SphereCollider sphere;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = GameObject.Find("BomberMan").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -48,4 +49,11 @@ public class Bomb : MonoBehaviour
             player.BombCountAdd();
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("プレイヤーと重なっている");
+        sphere.isTrigger = false;
+    }
+
 }
