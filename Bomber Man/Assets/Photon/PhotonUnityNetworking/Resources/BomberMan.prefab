@@ -630,7 +630,7 @@ MonoBehaviour:
   PlayerLife: 1
   BombCount: 1
   Death: 0
-  Capsule: {fileID: 2466798773632685088}
+  boxCollider: {fileID: 0}
   rigidbody: {fileID: 2466798773632685091}
   bomb: {fileID: 2477989092868516104, guid: 2dcd3897cd4391242a1e021594dbe940, type: 3}
 --- !u!114 &59153525143291401
