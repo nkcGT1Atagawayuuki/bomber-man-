@@ -13,7 +13,7 @@ namespace ConveyorSamples
         /// <summary>
         /// ベルトコンベアの設定速度
         /// </summary>
-        public float TargetDriveSpeed = 3.0f;
+        public float TargetDriveSpeed = 5.0f;
 
         /// <summary>
         /// 現在のベルトコンベアの速度
