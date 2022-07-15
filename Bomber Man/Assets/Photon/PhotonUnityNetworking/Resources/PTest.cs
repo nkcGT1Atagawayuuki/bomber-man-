@@ -29,7 +29,7 @@ public class PTest : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         // ランダムな位置にネットワークオブジェクトを生成する
-        var v = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
+        var v = new Vector3(0f, 0f, 0f);
         PhotonNetwork.Instantiate("BomberMan", v, Quaternion.identity);
         //サーバーなら赤、クライアントなら青にする
         //if (ServerFlg)

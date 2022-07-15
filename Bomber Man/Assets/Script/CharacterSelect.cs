@@ -26,7 +26,7 @@ namespace SelectCharacter
             //　MyGameManagerDataにキャラクターデータをセットする
             myGameManagerData.SetCharacter(character);
             //　ボタンの選択状態を解除して選択したボタンのハイライト表示を可能にする為に実行
-            EventSystem.current.SetSelectedGameObject(null);
+            //EventSystem.current.SetSelectedGameObject(null);
             //　ゲームスタートボタンを有効にする
             gameStartButton.SetActive(true);
         }
