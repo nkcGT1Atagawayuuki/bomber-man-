@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public int PlayerLife = 0;       //プレイヤーの体力
     public int BombCount = 0;        //プレイヤーのボムの個数
     public bool Death = false;       //プレイヤーが死んだときtrueにしてifの処理をする
-    public CapsuleCollider Capsule;  //CapsulColliderの取得
+    public CapsuleCollider capsuleCollider;  //CapsulColliderの取得
     public Rigidbody rigidbody;      //Rigidbodyの取得
 
     public Bomb bomb;
@@ -119,17 +119,18 @@ public class Player : MonoBehaviour
 
             if(PlayerLife == 0)
             {
+                bomb.FireReset();  //Bombスクリプトのメソッド実行
                 rigidbody.isKinematic = true;
-                Capsule.enabled = false;
+                capsuleCollider.enabled = false;
                 Death = true;
                 animator.SetBool("Death", true);
             }
         }
 
-        if(other.gameObject.tag == "PowerUp")
+        if(other.gameObject.tag == "FireUp")
         {
-            Debug.Log("up");
-            bomb.PowerUp(); //Bombスクリプトのメソッド実行
+            Debug.Log("FireUpを拾った");
+            bomb.FireUp(); //Bombスクリプトのメソッド実行
         }
     }
 }
