@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    public BoxCollider boxCollider;
+    
+     SoundManger soundManger;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        soundManger = GameObject.Find("SoundManger").GetComponent<SoundManger>();
     }
 
     // Update is called once per frame
@@ -18,13 +19,14 @@ public class PowerUp : MonoBehaviour
         
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == ("Player"))
         {
-            Debug.Log("Player‚ª‚«‚½");
-            boxCollider.enabled = true;
+            Destroy(gameObject);
+            soundManger.PowerUpSE();
         }
     }
 
 }
+

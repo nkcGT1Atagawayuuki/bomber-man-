@@ -6,16 +6,19 @@ public class Bomb : MonoBehaviour
 {
     int _x = 0;
     int _z = 0;
-    public int Fire = 1; //爆風の威力
+    public int Fire = 1;     //爆風の威力
+    public int MaxFire = 7;  //爆風の最大威力
 
     float _timer = 2.5f;
     Player player;
+    SoundManger soundManger;
     public BoxCollider boxCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("BomberMan").GetComponent<Player>();
+        soundManger = GameObject.Find("SoundManger").GetComponent<SoundManger>();
     }
 
     // Update is called once per frame
@@ -32,8 +35,11 @@ public class Bomb : MonoBehaviour
 
     public void FireUp()
     {
-        Debug.Log("Fire+1");
-        Fire += 1;
+        if(MaxFire >= Fire)
+        {
+            Debug.Log("Fireが上がった");
+            Fire += 1;
+        }
     }
 
     public void FireReset()
@@ -53,6 +59,7 @@ public class Bomb : MonoBehaviour
             GameObject.Destroy(this.gameObject);
             //Playerのメソッド実行
             player.BombCountAdd();
+            soundManger.ExplotionSE();
         }
     }
 
@@ -60,6 +67,6 @@ public class Bomb : MonoBehaviour
     {
         Debug.Log("プレイヤーと重なっている");
         boxCollider.isTrigger = false;
+        player.BomOverlap = false;
     }
-
 }

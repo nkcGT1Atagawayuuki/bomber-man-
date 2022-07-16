@@ -130,6 +130,32 @@ public class GameSystem : MonoBehaviour
             return false;
         }
 
+        if (block == BlockField.Block.SpeedUp || block == BlockField.Block.Wall)
+        {
+            if (block == BlockField.Block.SpeedUp)
+            {
+                GameObject obj = Instantiate(_explosionPrefab);
+                obj.transform.localPosition = BlockField.GetTruePositon(x, z);
+
+                BlockField.instance.ReflectExplotion(x, z);
+            }
+
+            return false;
+        }
+
+        if (block == BlockField.Block.BomUp || block == BlockField.Block.Wall)
+        {
+            if (block == BlockField.Block.BomUp)
+            {
+                GameObject obj = Instantiate(_explosionPrefab);
+                obj.transform.localPosition = BlockField.GetTruePositon(x, z);
+
+                BlockField.instance.ReflectExplotion(x, z);
+            }
+
+            return false;
+        }
+
         {
             GameObject obj = Instantiate(_explosionPrefab);
             obj.transform.localPosition = BlockField.GetTruePositon(x, z);

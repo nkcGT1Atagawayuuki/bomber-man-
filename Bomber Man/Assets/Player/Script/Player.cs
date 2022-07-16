@@ -6,14 +6,23 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Animator animator = null;
 
-    private int _controlX = 0;
-    private int _controlZ = 0;
+     int _controlX = 0;
+     int _controlZ = 0;
+
+    public float Xlimit = 6;
+    public float Ylimit = 1;
+    public float Zlimit = 6;
+
+    public float speed = 1.5f;       //プレイヤーの速度
+    public int BombCount = 1;        //プレイヤーのボムの個数
+    private float Maxspeed = 3.5f;   //プレイヤーの最大速度
+    public int MaxBomCount = 4;      //プレイヤーの最大ボムの個数
 
     private float _angle = 0.0f;
 
     public int PlayerLife = 0;       //プレイヤーの体力
-    public int BombCount = 0;        //プレイヤーのボムの個数
     public bool Death = false;       //プレイヤーが死んだときtrueにしてifの処理をする
+    public bool BomOverlap = false;  //ボムを重ねておけないようにする
     public CapsuleCollider capsuleCollider;  //CapsulColliderの取得
     public Rigidbody rigidbody;      //Rigidbodyの取得
 
@@ -35,14 +44,20 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(Death);
+        Debug.Log(BomOverlap);
 
         float forward = 0.0f;
 
         _controlX = 0;
         _controlZ = 0;
 
-        if(Death == false)
+        Vector3 currentPos = transform.position;
+        currentPos.x = Mathf.Clamp(currentPos.x, -Xlimit, Xlimit);
+        currentPos.y = Mathf.Clamp(currentPos.y, -Ylimit, Ylimit);
+        currentPos.z = Mathf.Clamp(currentPos.z, -Zlimit, Zlimit);
+        transform.position = currentPos;
+
+        if (Death == false)
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
@@ -68,7 +83,7 @@ public class Player : MonoBehaviour
             animator.SetFloat("Walk", forward, 0.1f, Time.deltaTime);
 
             
-            if(BombCount >= 1)　                     //ボムカウントが1以上の時ボムが置ける
+            if(BombCount >= 1 && BomOverlap == false)　                     //ボムカウントが1以上の時ボムが置ける
             {
                 if (Input.GetKeyDown(KeyCode.Space)) //ボタンを押したらボムを配置
                 {
@@ -76,6 +91,7 @@ public class Player : MonoBehaviour
                     BlockField.GetBomberPositon(out x, out z, transform.localPosition);
                     GameSystem.instance.SetBomb(x, z);
                     BombCount -= 1;                  //ボムカウントを-1する
+                    BomOverlap = true;
                 }
             }
         } 
@@ -84,7 +100,6 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         //移動
-        float speed = 3.0f;
         float deltaX = 0.0f;
         float deltaZ = 0.0f;
         if(_controlX != 0)
@@ -120,6 +135,8 @@ public class Player : MonoBehaviour
             if(PlayerLife == 0)
             {
                 bomb.FireReset();  //Bombスクリプトのメソッド実行
+                speed = 1.5f;
+                BombCount = 1;
                 rigidbody.isKinematic = true;
                 capsuleCollider.enabled = false;
                 Death = true;
@@ -131,6 +148,24 @@ public class Player : MonoBehaviour
         {
             Debug.Log("FireUpを拾った");
             bomb.FireUp(); //Bombスクリプトのメソッド実行
+        }
+
+        if (other.gameObject.tag == "SpeedUp")
+        {
+            Debug.Log("SpeedUpを拾った");
+            if(Maxspeed >= speed)
+            {
+                speed += 0.5f;
+            }
+        }
+
+        if(other.gameObject.tag == "BomUp")
+        {
+            Debug.Log("BomUpを拾った");
+            if(MaxBomCount >= BombCount)
+            {
+                BombCount += 1;
+            }         
         }
     }
 }

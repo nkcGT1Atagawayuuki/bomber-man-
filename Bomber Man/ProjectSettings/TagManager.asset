@@ -7,6 +7,8 @@ TagManager:
   - Explotion
   - FireUp
   - SpeedUp
+  - BomUp
+  - Ground
   layers:
   - Default
   - TransparentFX

@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 367268566138340664}
   - component: {fileID: 367268566138340665}
   - component: {fileID: 367268566138340670}
+  - component: {fileID: 1560619455070403803}
   m_Layer: 0
   m_Name: Cube
   m_TagString: FireUp
@@ -124,5 +125,17 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1560619455070403803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367268566138340668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e975e4fd1c8b6247990203bf23914fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
