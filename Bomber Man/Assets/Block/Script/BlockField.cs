@@ -15,9 +15,13 @@ public class BlockField : MonoBehaviour
         Floor,    //1は床
         Break,    //2は壊せるブロック
         Wall,　   //3は壁
-        FireUp,   //～Upはパワーアップアイテム
-        SpeedUp,　
-        BomUp,
+        FireUp,   //4～6はパワーアップ
+        SpeedUp,　//
+        BomUp,    //
+        bcup,     //7～10はベルトコンベア
+        bcdown,   //
+        bcleft,   //
+        bcright,  //
 
         Max
     }
@@ -32,7 +36,7 @@ public class BlockField : MonoBehaviour
     int[,] FIELD = new int[,]
     {
         { 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3, },
-        { 3,4,0,0,5,5,5,5,5,0,0,0,0,5,3, },
+        { 3,0,0,0,0,0,0,0,0,0,0,0,0,5,3, },
         { 3,2,3,0,3,0,3,0,3,0,3,0,3,0,3, },
         { 3,0,0,0,0,0,0,0,0,0,0,0,0,0,3, },
         { 3,0,3,0,3,0,3,0,3,0,3,0,3,0,3, },
@@ -40,11 +44,32 @@ public class BlockField : MonoBehaviour
         { 3,0,3,0,3,0,3,0,3,0,3,0,3,0,3, },
         { 3,0,0,0,0,0,0,0,0,0,0,0,0,0,3, },
         { 3,0,3,0,3,0,3,0,3,0,3,0,3,0,3, },
-        { 3,0,0,0,0,4,4,4,4,4,4,4,4,0,3, },
+        { 3,0,0,0,0,4,0,0,0,0,0,0,0,0,3, },
         { 3,0,3,0,3,0,3,0,3,0,3,0,3,0,3, },
         { 3,0,0,2,2,2,2,0,0,0,0,0,0,0,3, },
         { 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3, },
     };
+
+    const int Floor_SIZE_X = 15;
+    const int Floor_SIZE_Y = 13;
+
+    //床
+    int[,] Floor = new int[,]
+   {
+        { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, },
+        { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, },
+        { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, },
+        { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, },
+        { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, },
+        { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, },
+        { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, },
+        { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, },
+        { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, },
+        { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, },
+        { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, },
+        { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, },
+        { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, },
+   };
 
     GameObject[,] _valls = new GameObject[FIELD_SIZE_Y, FIELD_SIZE_X];
 
@@ -82,8 +107,8 @@ public class BlockField : MonoBehaviour
         {
             for (int x = 0; x < FIELD_SIZE_X; x++)
             {
-                GameObject FloorObj = Instantiate<GameObject>(Prefab[(int)Block.Floor]);
-                FloorObj.transform.localPosition = new Vector3(x + ofsX, -0.5f, y + ofsY);
+                //GameObject FloorObj = Instantiate<GameObject>(Prefab[(int)Block.Floor]);
+                //Floor.transform.localPosition = new Vector3(x + ofsX, -0.5f, y + ofsY);
                 int none = FIELD[y, x];
                 if (none == 0)
                 {
@@ -92,7 +117,7 @@ public class BlockField : MonoBehaviour
                 GameObject newObj = Instantiate<GameObject>(Prefab[FIELD[y, x]]);
                 newObj.transform.localPosition = new Vector3(x + ofsX, 0.5f, y + ofsY);
 
-                if (FIELD[y, x] == (int)Block.Break) 
+                if (FIELD[y, x] == (int)Block.Break)
                 {
                     _valls[y, x] = newObj;
                 }
@@ -114,8 +139,18 @@ public class BlockField : MonoBehaviour
 
             }
         }
-    }
 
+        float floX = -(Floor_SIZE_X - 1) * 0.5f;
+        float floY = -(Floor_SIZE_Y - 1) * 0.5f;
+        for (int y = 0; y < Floor_SIZE_Y; y++)
+        {
+            for (int x = 0; x < Floor_SIZE_X; x++)
+            {
+                GameObject newObj = Instantiate<GameObject>(Prefab[Floor[y, x]]);
+                newObj.transform.localPosition = new Vector3(x + floX, -0.5f, y + floY);
+            }
+        }
+    }
     // Update is called once per frame
     void Update()
     {

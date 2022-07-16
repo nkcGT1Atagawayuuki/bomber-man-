@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(BomOverlap);
+        //Debug.Log(BomOverlap);
 
         float forward = 0.0f;
 

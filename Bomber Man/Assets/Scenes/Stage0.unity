@@ -400,6 +400,10 @@ MonoBehaviour:
   - {fileID: 367268565945888148, guid: fd6379ffd38cccb449b15d9b1ea358bf, type: 3}
   - {fileID: 2832377962367276654, guid: 717fe5b98303b6d4eadf04efca2d0f1c, type: 3}
   - {fileID: 5303659928751227622, guid: 8a528b54d57e1e243b06ef7fe964d51f, type: 3}
+  - {fileID: 3802092369874535625, guid: b0a7210441426f647923cb832485ae99, type: 3}
+  - {fileID: 3802092369874535625, guid: cf5371bfa768bbe4f9a9aafc2def641a, type: 3}
+  - {fileID: 4677632339923746443, guid: 670693c90e8205f4a936170d833f4f9c, type: 3}
+  - {fileID: 4677632339923746443, guid: 255edf61e3fc3e54d98cd47c322a5c06, type: 3}
   stage: 0
 --- !u!1 &1567377570
 GameObject:
@@ -427,10 +431,10 @@ AudioSource:
   m_GameObject: {fileID: 1567377570}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 82dfff9e2a126f444a3f240975b8f392, type: 3}
+  OutputAudioMixerGroup: {fileID: -8016779237684778612, guid: 5f419c533690e624f86b32953dd73e44, type: 2}
+  m_audioClip: {fileID: 8300000, guid: fd53f13bd641bd949b4454c918455038, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -558,8 +562,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec056152953dccd4e87ebdf08e310ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expse: {fileID: 8300000, guid: 5f98f79a7cd99844d882a0b40c2dc6b1, type: 3}
-  pup: {fileID: 8300000, guid: 3e214621bce4820408480ed145ec7384, type: 3}
+  expse: {fileID: 8300000, guid: 800f8a40edafc1d4cbe51ed42f467a06, type: 3}
+  pup: {fileID: 8300000, guid: e6d3252f4a34bfa4c83057e1e24888d0, type: 3}
 --- !u!4 &2121725345
 Transform:
   m_ObjectHideFlags: 0
@@ -583,7 +587,7 @@ AudioSource:
   m_GameObject: {fileID: 2121725343}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 279956456028026023, guid: 5f419c533690e624f86b32953dd73e44, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -778,6 +782,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2466798773632685089, guid: a92d25b8115394c4b8fdfed646ba5e6f, type: 3}
+      propertyPath: MaxBomCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2466798773632685089, guid: a92d25b8115394c4b8fdfed646ba5e6f, type: 3}
       propertyPath: soundManger
       value: 
       objectReference: {fileID: 2121725344}
@@ -791,7 +799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2466798773632685091, guid: a92d25b8115394c4b8fdfed646ba5e6f, type: 3}
       propertyPath: m_CollisionDetection
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2466798773632685094, guid: a92d25b8115394c4b8fdfed646ba5e6f, type: 3}
       propertyPath: m_Name
