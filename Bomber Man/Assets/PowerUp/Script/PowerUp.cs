@@ -27,6 +27,5 @@ public class PowerUp : MonoBehaviour
             soundManger.PowerUpSE();
         }
     }
-
 }
 
