@@ -771,7 +771,7 @@ PrefabInstance:
       objectReference: {fileID: 736116728299740135, guid: 2dcd3897cd4391242a1e021594dbe940, type: 3}
     - target: {fileID: 2466798773632685089, guid: a92d25b8115394c4b8fdfed646ba5e6f, type: 3}
       propertyPath: speed
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2466798773632685089, guid: a92d25b8115394c4b8fdfed646ba5e6f, type: 3}
       propertyPath: Xlimit

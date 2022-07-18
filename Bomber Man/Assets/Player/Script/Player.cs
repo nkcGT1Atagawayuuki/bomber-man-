@@ -13,9 +13,9 @@ public class Player : MonoBehaviour
     public float Ylimit = 1;
     public float Zlimit = 6;
 
-    public float speed = 1.5f;       //プレイヤーの速度
+    public float speed = 1f;       //プレイヤーの速度
     public int BombCount = 1;        //プレイヤーのボムの個数
-    private float Maxspeed = 3.5f;   //プレイヤーの最大速度
+    private float Maxspeed = 3f;   //プレイヤーの最大速度
     public int MaxBomCount = 4;      //プレイヤーの最大ボムの個数
 
     private float _angle = 0.0f;
@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
         }
         if (_controlZ != 0)
         {
-            deltaZ += Time.deltaTime * _controlZ * speed;//
+            deltaZ += Time.deltaTime * _controlZ * speed;
         }
         transform.localPosition += new Vector3(deltaX, 0.0f, deltaZ);
 
@@ -126,7 +126,7 @@ public class Player : MonoBehaviour
             Death = true;
             animator.SetBool("Death", true);
             bomb.FireReset();  //Bombスクリプトのメソッド実行
-            speed = 1.5f;
+            speed = 1f;
             BombCount = 1;
             rigidbody.isKinematic = true;
             capsuleCollider.enabled = false;
@@ -143,13 +143,13 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.tag == "FireUp")
         {
-            Debug.Log("FireUpを拾った");
+            //Debug.Log("FireUpを拾った");
             bomb.FireUp(); //Bombスクリプトのメソッド実行
         }
 
         if (other.gameObject.tag == "SpeedUp")
         {
-            Debug.Log("SpeedUpを拾った");
+            //Debug.Log("SpeedUpを拾った");
             if (Maxspeed >= speed)
             {
                 speed += 0.5f;
@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.tag == "BomUp")
         {
-            Debug.Log("BomUpを拾った");
+            //Debug.Log("BomUpを拾った");
             if (MaxBomCount >= BombCount)
             {
                 BombCount += 1;
