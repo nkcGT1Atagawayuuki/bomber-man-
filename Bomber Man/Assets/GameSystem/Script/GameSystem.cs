@@ -12,11 +12,7 @@ public class GameSystem : MonoBehaviour
     //”š•—
     List<Explotion> _explotionList = new List<Explotion>();
 
-    public GameObject FireUp;
-    public GameObject SpeedUp;
-    public GameObject BomUp;
     public GameObject[] Item;
-    //int Sos = Random.Range(0, 10);
    
     static private GameSystem _instance = null;
     public static GameSystem instance { get { return _instance; } }
@@ -91,7 +87,7 @@ public class GameSystem : MonoBehaviour
         {
             if (block == BlockField.Block.Break)
             {
-                int ItemCount = Random.Range(0, 3);
+                int ItemCount = Random.Range(0, 4);//ƒ‰ƒ“ƒ_ƒ€
                 GameObject obj = Instantiate(_explosionPrefab);
                 obj.transform.localPosition = BlockField.GetTruePositon(x, z);
 
