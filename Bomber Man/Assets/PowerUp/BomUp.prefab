@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3359304628308756309}
   - component: {fileID: 803603530463930965}
   - component: {fileID: 7414728818876418805}
-  - component: {fileID: 4858724738827408710}
+  - component: {fileID: 431366640821232618}
   m_Layer: 0
   m_Name: Cube
   m_TagString: BomUp
@@ -127,7 +127,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4858724738827408710
+--- !u!114 &431366640821232618
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,6 +136,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8478154542123211374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e975e4fd1c8b6247990203bf23914fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ceed0d13a0dc204ba2087cb47226789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

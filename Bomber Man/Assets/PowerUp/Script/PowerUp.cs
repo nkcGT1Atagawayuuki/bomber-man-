@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    
-     SoundManger soundManger;
+    SoundManager soundManager;
+    float timer =0.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        soundManger = GameObject.Find("SoundManger").GetComponent<SoundManger>();
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,8 +24,19 @@ public class PowerUp : MonoBehaviour
         if (other.gameObject.tag == ("Player"))
         {
             Destroy(gameObject);
-            soundManger.PowerUpSE();
+            soundManager.PowerUpSE();
+        } 
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == ("Explotion"))
+        {
+            timer += Time.deltaTime;
+            if (timer > 1.5f)  //1.5ïbà»è„ÇÃExplotionÇ…ìñÇΩÇËë±ÇØÇÈÇ∆è¡Ç¶ÇÈ
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
-

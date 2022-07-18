@@ -7,7 +7,6 @@ public class BlockField : MonoBehaviour
     static private BlockField _instance = null;
     public static BlockField instance { get { return _instance; } }
 
-
     public enum Block
     {
         //ブロックの順番
@@ -15,16 +14,14 @@ public class BlockField : MonoBehaviour
         Floor,    //1は床
         Break,    //2は壊せるブロック
         Wall,　   //3は壁
-        FireUp,   //4～6はパワーアップ
-        SpeedUp,　//
-        BomUp,    //
-        bcup,     //7～10はベルトコンベア
+        bcup,     //4～7はベルトコンベア
         bcdown,   //
         bcleft,   //
         bcright,  //
 
         Max
     }
+
 
     [SerializeField] private GameObject[] Prefab = null;
     public int stage = 0;
@@ -36,11 +33,11 @@ public class BlockField : MonoBehaviour
     int[,] FIELD = new int[,]
     {
         { 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3, },
-        { 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3, },
-        { 3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3, },
-        { 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3, },
-        { 3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3, },
-        { 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3, },
+        { 3,0,0,0,0,0,0,0,0,2,2,2,0,0,0,0,0,0,0,0,3, },
+        { 3,0,3,0,3,0,3,0,3,2,3,2,3,2,3,2,3,0,3,0,3, },
+        { 3,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,0,0,0,0,3, },
+        { 3,0,3,0,3,0,3,0,3,2,3,2,3,2,3,2,3,0,3,0,3, },
+        { 3,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,0,0,0,0,3, },
         { 3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3, },
         { 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3, },
         { 3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3, },
@@ -71,7 +68,7 @@ public class BlockField : MonoBehaviour
         { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, },
    };
 
-    GameObject[,] _valls = new GameObject[FIELD_SIZE_Y, FIELD_SIZE_X];
+    GameObject[,] _walls = new GameObject[FIELD_SIZE_Y, FIELD_SIZE_X];
 
     static public Vector3 GetTruePositon(int x, int z)
     {
@@ -119,24 +116,8 @@ public class BlockField : MonoBehaviour
 
                 if (FIELD[y, x] == (int)Block.Break)
                 {
-                    _valls[y, x] = newObj;
+                    _walls[y, x] = newObj;
                 }
-
-                if (FIELD[y, x] == (int)Block.FireUp)
-                {
-                    _valls[y, x] = newObj;
-                }
-
-                if (FIELD[y, x] == (int)Block.SpeedUp)
-                {
-                    _valls[y, x] = newObj;
-                }
-
-                if (FIELD[y, x] == (int)Block.BomUp)
-                {
-                    _valls[y, x] = newObj;
-                }
-
             }
         }
 
@@ -159,10 +140,10 @@ public class BlockField : MonoBehaviour
 
     public bool ReflectExplotion(int x, int z)
     {
-        if(_valls[z,x] != null)
+        if(_walls[z,x] != null)
         {
-            GameObject.Destroy(_valls[z, x].gameObject);
-            _valls[z, x] = null;
+            GameObject.Destroy(_walls[z, x].gameObject);
+            _walls[z, x] = null;
             FIELD[z, x] = (int)Block.None;
             return true;
         }

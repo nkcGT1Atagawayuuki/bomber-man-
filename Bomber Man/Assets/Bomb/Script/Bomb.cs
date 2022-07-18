@@ -6,25 +6,35 @@ public class Bomb : MonoBehaviour
 {
     int _x = 0;
     int _z = 0;
+
+    public int x { get { return _x; } }
+    public int z { get { return _z; } }
+
     public int Fire = 1;     //爆風の威力
     public int MaxFire = 7;  //爆風の最大威力
 
+    [SerializeField] private Transform _animObj = null;
+
     float _timer = 2.5f;
+    float _animTimer = 0.0f;
+
     Player player;
-    SoundManger soundManger;
+    SoundManager soundManager;
     public BoxCollider boxCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("BomberMan").GetComponent<Player>();
-        soundManger = GameObject.Find("SoundManger").GetComponent<SoundManger>();
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        float sxz = 0.8f + Mathf.Sin(_animTimer * Mathf.PI) * 0.2f;
+        _animObj.localScale = new Vector3(sxz, 0.8f + -Mathf.Cos(_animTimer * Mathf.PI) * 0.2f, sxz);
+        _animTimer += Time.deltaTime;
     }
 
     public void Initialize(int x,int z)
@@ -53,20 +63,30 @@ public class Bomb : MonoBehaviour
 
         if (_timer <= 0.0f)
         {
+            //登録解除
+            GameSystem.instance.UnregisterBomb(this);
             //爆発
             GameSystem.instance.Explode(_x, _z, Fire);
             //消える
             GameObject.Destroy(this.gameObject);
             //Playerのメソッド実行
             player.BombCountAdd();
-            soundManger.ExplotionSE();
+            soundManager.ExplotionSE();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("プレイヤーと重なっている");
+        //Debug.Log("プレイヤーと重なっている");
         boxCollider.isTrigger = false;
         player.BomOverlap = false;
+    }
+
+    public void Chain()
+    {
+        if(_timer > 0.2f)
+        {
+            _timer = 0.2f;
+        }
     }
 }

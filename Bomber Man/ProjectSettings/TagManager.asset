@@ -9,6 +9,7 @@ TagManager:
   - SpeedUp
   - BomUp
   - Ground
+  - Break
   layers:
   - Default
   - TransparentFX

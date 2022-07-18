@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
 
     private float _angle = 0.0f;
 
-    public int PlayerLife = 0;       //プレイヤーの体力
     public bool Death = false;       //プレイヤーが死んだときtrueにしてifの処理をする
     public bool BomOverlap = false;  //ボムを重ねておけないようにする
     public CapsuleCollider capsuleCollider;  //CapsulColliderの取得
@@ -44,7 +43,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(BomOverlap);
+        //Debug.Log(Death);
 
         float forward = 0.0f;
 
@@ -118,6 +117,20 @@ public class Player : MonoBehaviour
             _angle = controlAngle * 360.0f / 8.0f + 90.0f;
         }
         transform.localEulerAngles = new Vector3(0.0f, _angle, 0.0f);
+
+        //爆風との当たり判定
+        int x, z;
+        BlockField.GetBomberPositon(out x, out z, transform.localPosition);
+        if (GameSystem.instance.CheckExploltion(x, z))
+        {
+            Death = true;
+            animator.SetBool("Death", true);
+            bomb.FireReset();  //Bombスクリプトのメソッド実行
+            speed = 1.5f;
+            BombCount = 1;
+            rigidbody.isKinematic = true;
+            capsuleCollider.enabled = false;
+        }
     }
 
     public void BombCountAdd()
@@ -127,24 +140,8 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Explotion")
-        {
-            Debug.Log("爆風に当たった");
-            PlayerLife -= 1;
 
-            if(PlayerLife == 0)
-            {
-                bomb.FireReset();  //Bombスクリプトのメソッド実行
-                speed = 1.5f;
-                BombCount = 1;
-                rigidbody.isKinematic = true;
-                capsuleCollider.enabled = false;
-                Death = true;
-                animator.SetBool("Death", true);
-            }
-        }
-
-        if(other.gameObject.tag == "FireUp")
+        if (other.gameObject.tag == "FireUp")
         {
             Debug.Log("FireUpを拾った");
             bomb.FireUp(); //Bombスクリプトのメソッド実行
@@ -153,19 +150,19 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "SpeedUp")
         {
             Debug.Log("SpeedUpを拾った");
-            if(Maxspeed >= speed)
+            if (Maxspeed >= speed)
             {
                 speed += 0.5f;
             }
         }
 
-        if(other.gameObject.tag == "BomUp")
+        if (other.gameObject.tag == "BomUp")
         {
             Debug.Log("BomUpを拾った");
-            if(MaxBomCount >= BombCount)
+            if (MaxBomCount >= BombCount)
             {
                 BombCount += 1;
-            }         
+            }
         }
     }
 }
