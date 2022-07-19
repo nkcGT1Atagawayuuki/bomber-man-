@@ -7,6 +7,8 @@ public class PTest : MonoBehaviourPunCallbacks
 {
     public static PTest instance;
     public bool ServerFlg; //サーバーフラグ
+    public GameObject[] Player;
+    int PlayerCount = 0;
 
     private void Awake()
     {

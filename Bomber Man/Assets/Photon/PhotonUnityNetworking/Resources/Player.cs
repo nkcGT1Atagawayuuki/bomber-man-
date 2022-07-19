@@ -20,6 +20,7 @@ public class Player : MonoBehaviourPunCallbacks
     public int MaxBomCount = 4;      //プレイヤーの最大ボムの個数
 
     private float _angle = 0.0f;
+    private PhotonView photonView = null;
 
     public bool Death = false;       //プレイヤーが死んだときtrueにしてifの処理をする
     public bool BomOverlap = false;  //ボムを重ねておけないようにする
@@ -39,12 +40,18 @@ public class Player : MonoBehaviourPunCallbacks
     void Start()
     {
         animator = GetComponent<Animator>();
+        photonView = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //Debug.Log(Death);
+
+        if (!photonView.IsMine)
+        {
+            return;
+        }
 
         float forward = 0.0f;
 
