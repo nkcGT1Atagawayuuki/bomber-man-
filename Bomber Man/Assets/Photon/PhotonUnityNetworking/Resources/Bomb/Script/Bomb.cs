@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Bomb : MonoBehaviour
+public class Bomb : MonoBehaviourPunCallbacks
 {
     int _x = 0;
     int _z = 0;

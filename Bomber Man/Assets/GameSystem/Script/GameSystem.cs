@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class GameSystem : MonoBehaviour
+public class GameSystem : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject _bombPrefab = null;       //”š’e
     [SerializeField] private GameObject _explosionPrefab = null;  //”š•—
