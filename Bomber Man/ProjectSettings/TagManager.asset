@@ -8,8 +8,7 @@ TagManager:
   - FireUp
   - SpeedUp
   - BomUp
-  - Ground
-  - Break
+  - BomberMan
   layers:
   - Default
   - TransparentFX
