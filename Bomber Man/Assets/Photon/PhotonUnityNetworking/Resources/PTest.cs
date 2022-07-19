@@ -46,8 +46,9 @@ public class PTest : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         var v = new Vector3(9f, 0f, 5f);
-        PhotonNetwork.Instantiate("BomberMan", v, Quaternion.identity);
-        
+        GameObject PlayerNumber = PhotonNetwork.Instantiate(Player[PlayerCount], v, Quaternion.identity);
+
+
     }
 
     //Ú‘±ó‘Ô‚Ì•\¦
