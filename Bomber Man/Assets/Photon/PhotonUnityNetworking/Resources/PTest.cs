@@ -7,8 +7,6 @@ public class PTest : MonoBehaviourPunCallbacks
 {
     public static PTest instance;
     public bool ServerFlg; //サーバーフラグ
-    public GameObject[] Player;
-    int PlayerCount = 0;
 
     private void Awake()
     {
@@ -46,9 +44,7 @@ public class PTest : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         var v = new Vector3(9f, 0f, 5f);
-        GameObject PlayerNumber = PhotonNetwork.Instantiate(Player[PlayerCount], v, Quaternion.identity);
-
-
+        PhotonNetwork.Instantiate("BomberMan", v, Quaternion.identity);
     }
 
     //接続状態の表示
