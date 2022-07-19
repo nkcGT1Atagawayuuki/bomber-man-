@@ -25,7 +25,7 @@ public class Bomb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("BomberMan").GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("BomberMan").GetComponent<Player>();
         soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 

@@ -5,7 +5,22 @@ using Photon.Realtime;
 
 public class PTest : MonoBehaviourPunCallbacks
 {
+    public static PTest instance;
     public bool ServerFlg; //サーバーフラグ
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void Login(string ip, bool sf)
     {
         //サーバーフラグの設定
@@ -28,18 +43,9 @@ public class PTest : MonoBehaviourPunCallbacks
     // ルームに入ったとき時
     public override void OnJoinedRoom()
     {
-        // ランダムな位置にネットワークオブジェクトを生成する
-        var v = new Vector3(0f, 0f, 0f);
+        var v = new Vector3(9f, 0f, 5f);
         PhotonNetwork.Instantiate("BomberMan", v, Quaternion.identity);
-        //サーバーなら赤、クライアントなら青にする
-        //if (ServerFlg)
-        //{
-        //    go.GetComponent<Renderer>().material.color = Color.red;
-        //}
-        //else
-        //{
-        //    go.GetComponent<Renderer>().material.color = Color.blue;
-        //}
+        
     }
 
     //接続状態の表示
