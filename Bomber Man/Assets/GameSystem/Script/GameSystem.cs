@@ -2,19 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class GameSystem : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject _bombPrefab = null;       //îöíe
     [SerializeField] private GameObject _explosionPrefab = null;  //îöïó
 
-    List<Bomb> _bombLisst = new List<Bomb>();
+    //List<Bomb> _bombLisst = new List<Bomb>();
 
     //îöïó
     List<Explotion> _explotionList = new List<Explotion>();
 
     public GameObject[] Item;
-   
+    private PhotonView photonView = null;
+
     static private GameSystem _instance = null;
     public static GameSystem instance { get { return _instance; } }
 
@@ -30,16 +32,17 @@ public class GameSystem : MonoBehaviourPunCallbacks
 
     }
 
-    public bool SetBomb(int x, int z)
-    {
-        GameObject obj = Instantiate(_bombPrefab);
-        obj.transform.localPosition = BlockField.GetTruePositon(x, z);
-        obj.GetComponent<Bomb>().Initialize(x, z);
 
-        _bombLisst.Add(obj.GetComponent<Bomb>());
+    //public bool SetBomb(int x, int z)
+    //{
+    //    GameObject obj = Instantiate(_bombPrefab);
+    //    obj.transform.localPosition = BlockField.GetTruePositon(x, z);
+    //    obj.GetComponent<Bomb>().Initialize(x, z);
 
-        return true;
-    }
+    //    _bombLisst.Add(obj.GetComponent<Bomb>());
+
+    //    return true;
+    //}
 
     public bool Explode(int x, int z, int power)
     {
@@ -101,7 +104,7 @@ public class GameSystem : MonoBehaviourPunCallbacks
                 
 
                 //îöíeÇÃãNîöÇëÅÇﬂÇÈ
-                ChainBomb(x, z);
+                //ChainBomb(x, z);
 
                 BlockField.instance.ReflectExplotion(x, z);
             }
@@ -116,33 +119,33 @@ public class GameSystem : MonoBehaviourPunCallbacks
             _explotionList.Add(obj.GetComponent<Explotion>());
 
             //îöíeÇÃãNîöÇëÅÇﬂÇÈ
-            ChainBomb(x, z);
+            //ChainBomb(x, z);
         }
        
         return true;
     }
 
-    private bool ChainBomb(int x, int z)
-    {
-        int n = _bombLisst.Count;
-        for (int i = 0; i < n; i++) 
-        {
-            if(_bombLisst[i].x == x&& _bombLisst[i].z == z)
-            {
-                _bombLisst[i].Chain();
-            }
-        }
-        return true;
-    }
+    //private bool ChainBomb(int x, int z)
+    //{
+    //    int n = _bombLisst.Count;
+    //    for (int i = 0; i < n; i++) 
+    //    {
+    //        if(_bombLisst[i].x == x&& _bombLisst[i].z == z)
+    //        {
+    //            _bombLisst[i].Chain();
+    //        }
+    //    }
+    //    return true;
+    //}
 
-    public void UnregisterBomb(Bomb ex)
-    {
-        int index = _bombLisst.IndexOf(ex);
-        if (index >= 0)
-        {
-            _bombLisst.RemoveAt(index);
-        }
-    }
+    //public void UnregisterBomb(Bomb ex)
+    //{
+    //    int index = _bombLisst.IndexOf(ex);
+    //    if (index >= 0)
+    //    {
+    //        _bombLisst.RemoveAt(index);
+    //    }
+    //}
 
     public void UnregisterExplotions(Explotion ex)
     {

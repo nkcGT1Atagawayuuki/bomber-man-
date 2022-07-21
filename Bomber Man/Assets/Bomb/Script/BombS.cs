@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-public class Bomb : MonoBehaviourPunCallbacks
+public class BombS : MonoBehaviour
 {
     int _x = 0;
     int _z = 0;
@@ -19,14 +18,14 @@ public class Bomb : MonoBehaviourPunCallbacks
     float _timer = 2.5f;
     float _animTimer = 0.0f;
 
-    Player player;
+    //Player player;
     SoundManager soundManager;
     public BoxCollider boxCollider;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("BomberMan").GetComponent<Player>();
+        //player = GameObject.FindGameObjectWithTag("BomberMan").GetComponent<Player>();
         soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
@@ -65,13 +64,13 @@ public class Bomb : MonoBehaviourPunCallbacks
         if (_timer <= 0.0f)
         {
             //登録解除
-            GameSystem.instance.UnregisterBomb(this);
+          //  GameSystem.instance.UnregisterBomb(this);
             //爆発
             GameSystem.instance.Explode(_x, _z, Fire);
             //消える
             GameObject.Destroy(this.gameObject);
             //Playerのメソッド実行
-            player.BombCountAdd();
+            //player.BombCountAdd();
             soundManager.ExplotionSE();
         }
     }
@@ -80,7 +79,7 @@ public class Bomb : MonoBehaviourPunCallbacks
     {
         //Debug.Log("プレイヤーと重なっている");
         boxCollider.isTrigger = false;
-        player.BomOverlap = false;
+        //player.BomOverlap = false;
     }
 
     public void Chain()

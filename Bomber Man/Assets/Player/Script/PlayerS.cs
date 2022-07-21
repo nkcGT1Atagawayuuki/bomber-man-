@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
-public class Player : MonoBehaviourPunCallbacks
+public class PlayerS : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Animator animator = null;
 
@@ -27,7 +28,8 @@ public class Player : MonoBehaviourPunCallbacks
     public CapsuleCollider capsuleCollider;  //CapsulColliderの取得
     public Rigidbody rigidbody;      //Rigidbodyの取得
 
-    public Bomb bomb;
+   // public Bomb bomb;
+    public GameObject Bom;
 
     static readonly int[,] ROTATION = new int[,]
     {
@@ -48,60 +50,72 @@ public class Player : MonoBehaviourPunCallbacks
     {
         //Debug.Log(Death);
 
-        if (!photonView.IsMine)
+        //自分が生成したキャラなら操作をする
+        if (photonView.IsMine)
         {
-            return;
-        }
+            float forward = 0.0f;
 
-        float forward = 0.0f;
+            _controlX = 0;
+            _controlZ = 0;
 
-        _controlX = 0;
-        _controlZ = 0;
+            Vector3 currentPos = transform.position;
+            currentPos.x = Mathf.Clamp(currentPos.x, -Xlimit, Xlimit);
+            currentPos.y = Mathf.Clamp(currentPos.y, -Ylimit, Ylimit);
+            currentPos.z = Mathf.Clamp(currentPos.z, -Zlimit, Zlimit);
+            transform.position = currentPos;
 
-        Vector3 currentPos = transform.position;
-        currentPos.x = Mathf.Clamp(currentPos.x, -Xlimit, Xlimit);
-        currentPos.y = Mathf.Clamp(currentPos.y, -Ylimit, Ylimit);
-        currentPos.z = Mathf.Clamp(currentPos.z, -Zlimit, Zlimit);
-        transform.position = currentPos;
-
-        if (Death == false)
-        {
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (Death == false)
             {
-                _controlZ++;
-            }
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                _controlZ--;
-            }
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                _controlX++;
-            }
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                _controlX--;
-            }
-
-            if (_controlX != 0 || _controlZ != 0)
-            {
-                forward = 1.0f;
-            }
-            animator.SetFloat("Walk", forward, 0.1f, Time.deltaTime);
-
-            
-            if(BombCount >= 1 && BomOverlap == false)　                     //ボムカウントが1以上の時ボムが置ける
-            {
-                if (Input.GetKeyDown(KeyCode.Space)) //ボタンを押したらボムを配置
+                if (Input.GetKey(KeyCode.UpArrow))
                 {
-                    int x, z;
-                    BlockField.GetBomberPositon(out x, out z, transform.localPosition);
-                    GameSystem.instance.SetBomb(x, z);
-                    BombCount -= 1;                  //ボムカウントを-1する
-                    BomOverlap = true;
+                    _controlZ++;
+                }
+                if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    _controlZ--;
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    _controlX++;
+                }
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    _controlX--;
+                }
+
+                if (_controlX != 0 || _controlZ != 0)
+                {
+                    forward = 1.0f;
+                }
+                animator.SetFloat("Walk", forward, 0.1f, Time.deltaTime);
+
+
+                if (BombCount >= 1 && BomOverlap == false)                      //ボムカウントが1以上の時ボムが置ける
+                {
+                    if (Input.GetKeyDown(KeyCode.Space)) //ボタンを押したらボムを配置
+                    {
+                        int x, z;
+                        BlockField.GetBomberPositon(out x, out z, transform.localPosition);
+                        //GameSystem.instance.SetBomb(x, z);
+
+                        BombCount -= 1;                  //ボムカウントを-1する
+                        BomOverlap = true;
+                    }
                 }
             }
-        } 
+        }
+    }
+
+    [PunRPC]
+    public bool SetBomb(int x, int z)
+    {
+        GameObject obj = Instantiate(Bom);
+        obj.transform.localPosition = BlockField.GetTruePositon(x, z);
+       // obj.GetComponent<Bomb>().Initialize(x, z);
+
+        //_bombLisst.Add(obj.GetComponent<Bomb>());
+
+        return true;
     }
 
     private void FixedUpdate()
@@ -133,7 +147,7 @@ public class Player : MonoBehaviourPunCallbacks
         {
             Death = true;
             animator.SetBool("Death", true);
-            bomb.FireReset();  //Bombスクリプトのメソッド実行
+           // bomb.FireReset();  //Bombスクリプトのメソッド実行
             speed = 1f;
             BombCount = 1;
             rigidbody.isKinematic = true;
@@ -152,7 +166,7 @@ public class Player : MonoBehaviourPunCallbacks
         if (other.gameObject.tag == "FireUp")
         {
             //Debug.Log("FireUpを拾った");
-            bomb.FireUp(); //Bombスクリプトのメソッド実行
+    //        bomb.FireUp(); //Bombスクリプトのメソッド実行
         }
 
         if (other.gameObject.tag == "SpeedUp")
