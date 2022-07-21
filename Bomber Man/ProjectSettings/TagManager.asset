@@ -9,11 +9,12 @@ TagManager:
   - SpeedUp
   - BomUp
   - BomberMan
+  - Break
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Block
   - Water
   - UI
   - 
