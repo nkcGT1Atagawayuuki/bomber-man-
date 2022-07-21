@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public float moveSpeed = 5f;
 
     public bool Stop = false;
-    public bool Death = true;
+    public bool Death = false;
 
     public GameObject bombPrefab;
 
@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     {
         if (!Death)
         {
+            animator.SetBool("Death", true);
             return;
         }
 
