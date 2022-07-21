@@ -15,6 +15,11 @@ public class GameSystem1 : MonoBehaviour
         SceneManager.LoadScene("douki");
     }
 
+    public void SelectGame()
+    {
+        SceneManager.LoadScene("CharacterSelectScene");
+    }
+
     public void EndGame()
     {
 #if UNITY_EDITOR

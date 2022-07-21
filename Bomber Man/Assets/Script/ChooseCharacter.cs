@@ -45,5 +45,9 @@ namespace SelectCharacter
                 }
             }
         }
+        public void StartGame()
+        {
+            SceneManager.LoadScene("douki");
+        }
     }
 }

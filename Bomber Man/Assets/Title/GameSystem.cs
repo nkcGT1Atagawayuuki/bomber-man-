@@ -8,7 +8,7 @@ public class GameSystem : MonoBehaviour
     //　スタートボタンを押したら実行する
     public void StartGame()
     {
-        SceneManager.LoadScene("douki");
+        SceneManager.LoadScene("CharacterSelectScene");
     }
     public void EndGame()
     {
