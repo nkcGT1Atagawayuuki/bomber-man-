@@ -8,6 +8,8 @@ public class Bomb : MonoBehaviour
     public LayerMask levelMask; // ステージのレイヤー
     public int Fire = 0;
 
+    private bool explosion = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +82,19 @@ public class Bomb : MonoBehaviour
 
             // 0.05 秒待ってから、次のマスに爆風を広げる
             yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!explosion && other.CompareTag("Explosion"))
+        {
+            // 2 重に爆発処理が実行されないように
+            // すでに爆発処理が実行されている場合は止める
+            CancelInvoke("Explotion");
+
+            // 爆発する
+            Explode();
         }
     }
 }

@@ -96,4 +96,12 @@ public class Player : MonoBehaviour
             Instantiate(bombPrefab, pos, bombPrefab.transform.rotation);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Explosion")
+        {
+            Death = false;
+        }
+    }
 }

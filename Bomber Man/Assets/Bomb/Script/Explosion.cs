@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Explotion : MonoBehaviour
+public class Explosion : MonoBehaviour
 {
 
     public float exp = 0f;
