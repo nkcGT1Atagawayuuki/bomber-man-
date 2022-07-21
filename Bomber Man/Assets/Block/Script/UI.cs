@@ -13,9 +13,7 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if ()
-        //{
-        //    gameObject.GetComponent<Renderer>().material.color = Color.;
-        //}
+
+        gameObject.GetComponent<Renderer>().material.color = Color.blue;
     }
 }
