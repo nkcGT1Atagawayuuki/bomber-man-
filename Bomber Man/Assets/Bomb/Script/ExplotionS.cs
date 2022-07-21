@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Explotion : MonoBehaviour
+public class ExplotionS : MonoBehaviour
 {
     int _x = 0;
     int _z = 0;
@@ -42,7 +42,7 @@ public class Explotion : MonoBehaviour
         _timer -= Time.fixedDeltaTime;
         if(_timer <= 0.3f&& _isRegisterd)
         {
-            GameSystem.instance.UnregisterExplotions(this);
+            //GameSystem.instance.UnregisterExplotions(this);
         }
 
         if (_timer <= 0.0f)
