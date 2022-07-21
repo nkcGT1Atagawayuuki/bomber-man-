@@ -1,21 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviourPunCallbacks
 {
-    public float moveSpeed = 5f;
+    public float Speed = 3f;
+    public int BombCount = 1;
+
+    int MaxSpeed = 7;
+    int MaxBombCount = 5;
 
     public bool Stop = false;
     public bool Death = false;
+    public bool BombOverlap = false;
 
     public GameObject bombPrefab;
 
     private Rigidbody rigidBody;
     private Transform myTransform;
     private Animator animator;
+    public CapsuleCollider capsuleCollider;
+    public Bomb bomb;
 
-    // Use this for initialization
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -23,7 +31,6 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateMovement();
@@ -34,10 +41,17 @@ public class Player : MonoBehaviour
         if (!Death)
         {
             animator.SetBool("Death", true);
+            bomb.FireReset();
+            Speed = 3;
+            BombCount = 1;
             return;
         }
 
-        UpdatePlayerMovement();
+        //自分が生成したキャラなら操作できる
+        if (photonView.IsMine)
+        {
+            UpdatePlayerMovement();
+        }
     }
 
     private void UpdatePlayerMovement()
@@ -50,24 +64,24 @@ public class Player : MonoBehaviour
         }
 
         if (Input.GetKey(KeyCode.UpArrow))
-        { //Up movement
-            rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y, moveSpeed);
+        { 
+            rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y, Speed);
             myTransform.rotation = Quaternion.Euler(0, 0, 0);
             animator.SetBool("Walk", true);
             Stop = true;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
-        { //Left movement
-            rigidBody.velocity = new Vector3(-moveSpeed, rigidBody.velocity.y, rigidBody.velocity.z);
+        { 
+            rigidBody.velocity = new Vector3(-Speed, rigidBody.velocity.y, rigidBody.velocity.z);
             myTransform.rotation = Quaternion.Euler(0, 270, 0);
             animator.SetBool("Walk", true);
             Stop = true;
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
-        { //Down movement
-            rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y, -moveSpeed);
+        { 
+            rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y, -Speed);
             myTransform.rotation = Quaternion.Euler(0, 180, 0);
             animator.SetBool("Walk", true);
             Stop = true;
@@ -75,18 +89,25 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            rigidBody.velocity = new Vector3(moveSpeed, rigidBody.velocity.y, rigidBody.velocity.z);
+            rigidBody.velocity = new Vector3(Speed, rigidBody.velocity.y, rigidBody.velocity.z);
             myTransform.rotation = Quaternion.Euler(0, 90, 0);
             animator.SetBool("Walk", true);
             Stop = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (BombCount >= 1 && BombOverlap == false)
         {
-            DropBomb();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //DropBomb();
+                photonView.RPC(nameof(DropBomb), RpcTarget.All);
+                BombOverlap = true;
+                BombCount -= 1;
+            }
         }
     }
 
+    [PunRPC]
     private void DropBomb ()
     {
         var pos = new Vector3(Mathf.RoundToInt(myTransform.position.x), bombPrefab.transform.position.y, Mathf.RoundToInt(myTransform.position.z));
@@ -102,6 +123,30 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Explosion")
         {
             Death = false;
+            capsuleCollider.isTrigger = true;
+        }
+
+        if (other.gameObject.tag == "FireUp")
+        {
+            bomb.FireUp();
+        }
+
+        if (other.gameObject.tag == "SpeedUp")
+        {
+
+            if (MaxSpeed >= Speed)
+            {
+                Speed += 0.5f;
+            }
+        }
+
+        if (other.gameObject.tag == "BomUp")
+        {
+
+            if (MaxBombCount >= BombCount)
+            {
+                BombCount += 1;
+            }
         }
     }
 }

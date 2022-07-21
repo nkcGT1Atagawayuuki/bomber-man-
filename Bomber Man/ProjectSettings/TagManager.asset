@@ -10,6 +10,7 @@ TagManager:
   - BomUp
   - BomberMan
   - Break
+  - Explosion
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Block
   - Water
   - UI
-  - 
+  - Break
   - 
   - 
   - 

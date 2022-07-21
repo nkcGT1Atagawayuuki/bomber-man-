@@ -10,9 +10,18 @@ public class Bomb : MonoBehaviour
 
     private bool explosion = false;
 
+    //爆発済み？false：まだ爆発していない
+    bool exploded = false;
+
+    Player player;
+    SoundManager soundManager;
+    public SphereCollider sphereCollider;
+
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("BomberMan").GetComponent<Player>();
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         // 3 秒後に Explode 関数を実行
         Invoke("Explode", 3f);
     }
@@ -23,14 +32,28 @@ public class Bomb : MonoBehaviour
 
     }
 
-    private void Explode()
+    public void FireUp()
     {
+        Fire += 1;
+    }
+
+    public void FireReset()
+    {
+        Fire = 2;
+    }
+
+    void Explode()
+    {
+        soundManager.ExplotionSE();
+
         // 爆弾の位置に爆発エフェクトを作成
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
         // 爆弾を非表示にする
         GetComponent<MeshRenderer>().enabled = false;
         transform.Find("Collider").gameObject.SetActive(false);
+
+        exploded = true;
 
         // 爆風を広げる
         StartCoroutine(CreateExplosions(Vector3.forward)); // 上に広げる
@@ -40,6 +63,8 @@ public class Bomb : MonoBehaviour
 
         // 0.3 秒後に非表示にした爆弾を削除
         Destroy(gameObject, 0.3f);
+
+        player.BombCount += 1;
     }
 
     // 爆風を広げる
@@ -80,21 +105,30 @@ public class Bomb : MonoBehaviour
                 break;
             }
 
-            // 0.05 秒待ってから、次のマスに爆風を広げる
             yield return new WaitForSeconds(0.05f);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!explosion && other.CompareTag("Explosion"))
+        if(exploded == true)
         {
-            // 2 重に爆発処理が実行されないように
-            // すでに爆発処理が実行されている場合は止める
-            CancelInvoke("Explotion");
+            //すでに爆発をしているなら、処理を終える
+            return;
+        }
 
-            // 爆発する
+        //ぶつかった物がExplosionだったら爆破する
+        if (other.CompareTag("Explosion"))
+        {
             Explode();
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //Debug.Log("Playerが離れた");
+        
+            player.BombOverlap = false;
+        sphereCollider.isTrigger = false;
     }
 }

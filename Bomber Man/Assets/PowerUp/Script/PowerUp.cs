@@ -30,10 +30,10 @@ public class PowerUp : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == ("Explotion"))
+        if (other.gameObject.tag == ("Explosion"))
         {
             timer += Time.deltaTime;
-            if (timer > 1.0f)  //1.5ïbà»è„ÇÃExplotionÇ…ìñÇΩÇËë±ÇØÇÈÇ∆è¡Ç¶ÇÈ
+            if (timer > 3.0f)  //1.5ïbà»è„ÇÃExplotionÇ…ìñÇΩÇËë±ÇØÇÈÇ∆è¡Ç¶ÇÈ
             {
                 Destroy(gameObject);
             }

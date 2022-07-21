@@ -165,13 +165,13 @@ using Photon.Realtime;
 
 //        if (other.gameObject.tag == "FireUp")
 //        {
-//            //Debug.Log("FireUpを拾った");
-//    //        bomb.FireUp(); //Bombスクリプトのメソッド実行
+//         
+//            bomb.FireUp(); //Bombスクリプトのメソッド実行
 //        }
 
 //        if (other.gameObject.tag == "SpeedUp")
 //        {
-//            //Debug.Log("SpeedUpを拾った");
+//            
 //            if (Maxspeed >= speed)
 //            {
 //                speed += 0.5f;
@@ -180,7 +180,7 @@ using Photon.Realtime;
 
 //        if (other.gameObject.tag == "BomUp")
 //        {
-//            //Debug.Log("BomUpを拾った");
+//            
 //            if (MaxBomCount >= BombCount)
 //            {
 //                BombCount += 1;

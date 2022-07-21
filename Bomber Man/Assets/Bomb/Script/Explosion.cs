@@ -18,4 +18,13 @@ public class Explosion : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Break")
+        {
+            //Debug.Log("a");
+        }
+    }
+
 }
