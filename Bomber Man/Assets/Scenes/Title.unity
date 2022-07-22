@@ -876,9 +876,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 680154592}
-        m_TargetAssemblyTypeName: GameSystem, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 680154591}
+        m_TargetAssemblyTypeName: GameSystem1, Assembly-CSharp
+        m_MethodName: RetryGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
