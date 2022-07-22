@@ -18,11 +18,11 @@ public class Playerfase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        //if (Player1==Death)
-        //{
-        //    Batten.SetActive(true);
-        //}
+
+        if (Player1==Death)
+        {
+            Batten.SetActive(true);
+        }
         //if (Input.GetKeyDown(KeyCode.Alpha1))
         //{
         //    Batten.SetActive(true);

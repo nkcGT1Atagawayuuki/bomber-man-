@@ -95,7 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adcbdcf4dc23a3940ac14f83c2e8f031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Death: 0
   Batten: {fileID: 8888666489635516254}
+  Player1: {fileID: 3178315927244756918, guid: f2d9e87c269402b4e814461e98724671, type: 3}
 --- !u!1 &8888666489635516254
 GameObject:
   m_ObjectHideFlags: 0
