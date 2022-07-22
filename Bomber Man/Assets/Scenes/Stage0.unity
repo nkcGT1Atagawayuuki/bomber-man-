@@ -383,6 +383,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ServerFlg: 1
+  a:
+  - {x: 8, y: 0, z: 5}
+  - {x: 8, y: 0, z: -5}
+  - {x: -8, y: 0, z: -5}
+  - {x: -8, y: 0, z: 5}
 --- !u!4 &611919243
 Transform:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ public class Explosion : MonoBehaviour
         
         if(other.gameObject.tag == "Break")
         {
-            Debug.Log("‚Ô‚Â‚©‚Á‚½");
+            //Debug.Log("‚Ô‚Â‚©‚Á‚½");
         }
     }
 

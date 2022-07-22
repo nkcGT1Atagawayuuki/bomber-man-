@@ -7,6 +7,7 @@ public class PTest : MonoBehaviourPunCallbacks
 {
     public static PTest instance;
     public bool ServerFlg; //サーバーフラグ
+    public Vector3[] a;
 
     private void Awake()
     {
@@ -40,10 +41,28 @@ public class PTest : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions(), TypedLobby.Default);
     }
 
+    public override void OnCreatedRoom()
+    {
+        PhotonNetwork.CurrentRoom.MaxPlayers = 4;
+    }
+
     // ルームに入ったとき時
     public override void OnJoinedRoom()
     {
-        var v = new Vector3(9f, 0f, 5f);
+
+        var players = PhotonNetwork.PlayerList;
+        int index = 0;
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (players[i].IsLocal)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        
+        var v = a[index];
         PhotonNetwork.Instantiate("BomberMan", v, Quaternion.identity);
     }
 
