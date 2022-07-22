@@ -19,5 +19,6 @@ public class Director : MonoBehaviour
         gameobject.GetComponent<PTest>().Login(ip, server);
         //親オブジェクトを非表示(Panelを非表示)
         transform.parent.gameObject.SetActive(false);
+      
     }
 }
