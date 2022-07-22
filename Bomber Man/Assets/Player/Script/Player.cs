@@ -8,6 +8,7 @@ public class Player : MonoBehaviourPunCallbacks
 {
     public float Speed = 3f;
     public int BombCount = 1;
+    public float DeleteTime = 0f;
 
     int MaxSpeed = 7;
     int MaxBombCount = 5;
@@ -44,6 +45,12 @@ public class Player : MonoBehaviourPunCallbacks
             bomb.FireReset();
             Speed = 3;
             BombCount = 1;
+            DeleteTime += Time.deltaTime;
+            if (DeleteTime > 3)
+            {
+                Debug.Log("時間が経過した");
+                Application.Quit();
+            }
             return;
         }
 
