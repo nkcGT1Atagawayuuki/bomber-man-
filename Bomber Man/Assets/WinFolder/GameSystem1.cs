@@ -12,7 +12,7 @@ public class GameSystem1 : MonoBehaviour
     }
     public void RetryGame()
     {
-        SceneManager.LoadScene("douki");
+        SceneManager.LoadScene("Stage0");
     }
 
     public void SelectGame()
