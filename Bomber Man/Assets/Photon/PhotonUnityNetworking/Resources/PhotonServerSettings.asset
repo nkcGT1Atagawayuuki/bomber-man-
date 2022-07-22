@@ -35,5 +35,8 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - SetBomb
+  - DropBomb
+  - OnTriggerExit
+  - ItemDrop
   DisableAutoOpenWizard: 1
   ShowSettings: 1
