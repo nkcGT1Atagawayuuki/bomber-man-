@@ -927,13 +927,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 3
   BombCount: 1
+  DeleteTime: 0
   Stop: 0
   Death: 1
   BombOverlap: 0
   bombPrefab: {fileID: 124052, guid: 6291891f72f724c4eae6be6052e78735, type: 3}
   capsuleCollider: {fileID: 3188203421996750091}
   bomb: {fileID: -7880576308007800325, guid: 6291891f72f724c4eae6be6052e78735, type: 3}
-  RestartBotton: {fileID: 369027886257827767, guid: 2c5b508252a5f934491d9df2b3152da7, type: 3}
 --- !u!114 &3022679958908082985
 MonoBehaviour:
   m_ObjectHideFlags: 0
