@@ -4816,6 +4816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exp: 0.7
+  bomb: {fileID: -7880576308007800325, guid: 6291891f72f724c4eae6be6052e78735, type: 3}
 --- !u!54 &321942171939929404
 Rigidbody:
   m_ObjectHideFlags: 0

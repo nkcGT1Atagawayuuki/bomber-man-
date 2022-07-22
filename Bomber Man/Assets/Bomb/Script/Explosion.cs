@@ -6,6 +6,7 @@ public class Explosion : MonoBehaviour
 {
 
     public float exp = 0f;
+    public Bomb bomb;
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +22,10 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if(other.gameObject.tag == "Break")
         {
-            //Debug.Log("a");
+            Debug.Log("‚Ô‚Â‚©‚Á‚½");
         }
     }
 

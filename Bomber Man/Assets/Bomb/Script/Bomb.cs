@@ -14,12 +14,16 @@ public class Bomb : MonoBehaviour
     bool exploded = false;
 
     Player player;
+    Break b;
+
     SoundManager soundManager;
     public SphereCollider sphereCollider;
+    public bool isDestroy = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        b = GameObject.FindGameObjectWithTag("Break").GetComponent<Break>();
         player = GameObject.FindGameObjectWithTag("BomberMan").GetComponent<Player>();
         soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         // 3 秒後に Explode 関数を実行
@@ -87,7 +91,7 @@ public class Bomb : MonoBehaviour
             );
 
             // 爆風を広げた先に何も存在しない場合
-            if (!hit.collider)
+            if (!hit.collider&&isDestroy== false)
             {
                 // 爆風を広げるために、
                 // 爆発エフェクトのオブジェクトを作成
@@ -97,6 +101,7 @@ public class Bomb : MonoBehaviour
                     transform.position + (i * direction),
                     explosionPrefab.transform.rotation
                 );
+
             }
             // 爆風を広げた先にブロックが存在する場合
             else
