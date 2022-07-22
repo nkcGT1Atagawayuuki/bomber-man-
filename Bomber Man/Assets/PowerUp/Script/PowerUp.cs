@@ -33,7 +33,7 @@ public class PowerUp : MonoBehaviour
         if (other.gameObject.tag == ("Explosion"))
         {
             timer += Time.deltaTime;
-            if (timer > 3.0f)  //1.5ïbà»è„ÇÃExplotionÇ…ìñÇΩÇËë±ÇØÇÈÇ∆è¡Ç¶ÇÈ
+            if (timer > 0.5f)  //1.5ïbà»è„ÇÃExplotionÇ…ìñÇΩÇËë±ÇØÇÈÇ∆è¡Ç¶ÇÈ
             {
                 Destroy(gameObject);
             }

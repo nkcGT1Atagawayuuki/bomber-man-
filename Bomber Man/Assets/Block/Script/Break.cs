@@ -7,7 +7,7 @@ public class Break : MonoBehaviourPunCallbacks
 {
 
     public GameObject[] Item;
-    int BreakHp = 1;
+    public int BreakHp = 1;
 
 
     // Start is called before the first frame update
@@ -22,19 +22,20 @@ public class Break : MonoBehaviourPunCallbacks
 
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Explosion")
+        if (other.gameObject.tag == "Explosion")
         {
             BreakHp -= 1;
 
-            if(BreakHp == 0)
+            if (BreakHp == 0)
             {
                 Destroy(gameObject);
                 int ItemCount = Random.Range(0, 4);//ランダム
                 //アイテム生成       
-                Instantiate(Item[ItemCount],transform.position,transform.rotation);
+                Instantiate(Item[ItemCount], transform.position, transform.rotation);
             }
         }
     }
+
 }
